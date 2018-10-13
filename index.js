@@ -1,8 +1,26 @@
 const Joi = require('joi');
+const morgan = require('morgan')
+const helmet = require('helmet');
+const logger = require('./logger');
 const express = require('express');
 const app = express();
 
+console.log(`NODE_ENV: ${process.env.NODE_ENV}`); 
+console.log(`app: ${app.get('env')}`);
+//app.get('env')
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
+app.use(logger);
+app.use(helmet());
+
+if (app.get('env') === 'development') {
+    app.use(morgan('tiny'));
+    console.log('Morgan enabled...');
+}
+
+
+
 
 const courses = [
   { id: 1, name: 'course1'},
@@ -15,7 +33,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/api/courses/', (req, res) => {
-    res.send([1, 2, 3]);
+    res.send(courses);
 });
 
 
