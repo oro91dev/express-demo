@@ -10,11 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "config": "^2.0.1",
+    "debug": "^4.1.0",
     "express": "^4.16.4",
     "helmet": "^3.14.0",
     "joi": "^13.7.0",
     "morgan": "^1.9.1",
-    "nodemon": "^1.18.4"
+    "nodemon": "^1.18.4",
+    "pug": "^2.0.3"
   },
   "repository": {
     "type": "git",
